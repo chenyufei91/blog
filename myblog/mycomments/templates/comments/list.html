@@ -1,0 +1,87 @@
+{% load threadedcomments_tags %}
+{% load staticfiles %}
+<aside class="comments" style="margin-bottom: 50px" >
+    <hr>
+    {% if comment_list|length > 0 %}
+    <h2><i class="fa fa-comments"></i> {{ comment_list|length }}&nbsp;Comments</h2>
+
+{#{% for comment in comment_list|fill_tree|annotate_tree %}#}
+{#    {% ifchanged comment.parent_id %}{% else %}</li>{% endifchanged %}#}
+{#    {% if not comment.open and not comment.close %}</li>{% endif %}#}
+{#    {% if comment.open %}<ul>{% endif %}#}
+{##}
+{#    <li id="c{{ comment.id }}">#}
+{#        ...#}
+{#    {% for close in comment.close %}</li></ul>{% endfor %}#}
+{#{% endfor %}#}
+
+
+    {% for comment in comment_list|fill_tree|annotate_tree %}
+    {% if not comment.parent_id %}
+    <article class="comment" id=c{{ comment.id }}>
+        <header class="clearfix" >
+            <img src="{{ comment.user.avatar.url }}"  alt="A Smart Guy" class="avatar">
+            <div class="meta">
+                <h4><a href="#">{{ comment.user.nickname }}</a></h4>
+                <span class="date">{{ comment.submit_date }}</span>
+                <span class="separator">-</span>
+                <a href="#c{{ comment.id }}" data-comment-id="{{ comment.id }}" class="reply-link" >Reply</a>
+            </div>
+        </header>
+
+        <div class="body"  >
+            {{ comment.comment}}
+        </div>
+
+     </article>
+{#            <ul>#}
+    {% else %}
+            <article class="comment reply">
+        <header class="clearfix">
+            <img src="{{ comment.user.avatar.url }}" alt="A Smart Guy" class="avatar">
+            <div class="meta">
+                <h4><a href="#">{{ comment.user.nickname }}</a></h4>
+                <span class="date">{{ comment.submit_date }}</span>
+                <span class="separator">-</span>
+                <a href="#c{{ comment.id }}" data-comment-id="{{ comment.id }}" class="reply-link">Reply</a>
+            </div>
+        </header>
+        <div class="body" id="c{{ comment.id }}">
+            {{ comment.comment}}    
+        </div>
+    </article>
+{#            else</li>#}
+
+        {% endif %}
+{#        <div id="c{{ comment.id }}"></div>#}
+
+
+{#            {% for colse in comment.close %}</li>close</ul>{% endfor %}#}
+
+    {% endfor %}
+
+{% else %}
+
+    <h2 ><i class="fa fa-comments"></i>暂无评论，智慧的你快来评论吧～</h2>
+{% endif %}
+</aside>
+{##}
+{#    <article class="comment reply">#}
+{#        <header class="clearfix">#}
+{#            <img src="{% static 'blog/img/avatar.png' %}" alt="A Smart Guy" class="avatar">#}
+{#            <div class="meta">#}
+{#                <h3><a href="#">{{ comment.user.nickname }}</a></h3>#}
+{#                <span class="date">{{ comment.submit_date }}</span>#}
+{#                <span class="separator">-</span>#}
+{#                <a href="#c{{ comment.id }}" data-comment-id="{{ comment.id }}" class="reply-link">Reply</a>#}
+{#            </div>#}
+{#        </header>#}
+{#        <div class="body">#}
+{#            {{ comment.comment}}#}
+{#        </div>#}
+{#    </article>#}
+
+
+
+
+

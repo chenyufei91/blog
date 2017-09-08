@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block titile %}用户注册{% endblock titile %}
+
+{% block top %}
+    <link rel="stylesheet" href="{% static 'blog/css/user/user_style.css' %}">
+
+{% endblock top %}
+
+{% block breadcrumb %}
+    <span class="separator">&#x2F;</span>
+    <a href="{% url 'users:register' %}">用户注册</a>
+{% endblock breadcrumb %}
+
+{% block users %}
+<div class="widewrapper main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 clean-superblock" id="contact">
+                <h3>注册</h3>
+                <form class="form" action="{% url 'users:register' %}" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                        {% if field.help_text %}
+                            <p class="help text-small text-muted">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    {% endfor %}
+                      <button type="submit" class="btn btn-primary btn-block">注册</button>
+                    <input type="hidden" name="next" value="{{ next }}">
+                </form>
+                <div class="login_bottom" style="text-align: center" >
+                    <a href="{% url 'login' %}" >已有账号登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{#<div class="flex-center">#}
+{#    <div class="container">#}
+{#        <div class="flex-center">#}
+{#            <div class="unit-1-2 unit-1-on-mobile">#}
+{#                <h3>注册</h3>#}
+{#                <form class="form" action="{% url 'users:register' %}" method="post">#}
+{#                    {% csrf_token %}#}
+{#                    {% for field in form %}#}
+{#                        {{ field.label_tag }}#}
+{#                        {{ field }}#}
+{#                        {{ field.errors }}#}
+{#                        {% if field.help_text %}#}
+{#                            <p class="help text-small text-muted">{{ field.help_text|safe }}</p>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+
+
+                    <!--用户名-->
+{#                    <label for="id_username">用户名:</label>#}
+{#                    {{ form.username }}#}
+{#                    {{ form.username.errors }}#}
+{#                    {% if form.username.help_text %}#}
+{#                        <p class="help text-small text-muted">{{ form.username.help_text|safe }}</p>#}
+{#                    {% endif %}#}
+{##}
+{#                    <!--昵称-->#}
+{#                    <label for="id_nickname">昵称:</label>#}
+{#                    {{ form.nickname }}#}
+{#                    {{ form.nickname.errors }}#}
+{#                    {% if form.nickname.help_text %}#}
+{#                        <p class="help text-small text-muted">{{ form.nickname.help_text|safe }}</p>#}
+{#                    {% endif %}#}
+{##}
+{#                    <!--邮箱值-->#}
+{#                    <label for="id_email">电子邮箱地址:</label>#}
+{#                    {{ form.email }}#}
+{#                    {{ form.email.errors }}#}
+{#                    {% if form.email.help_text %}#}
+{#                        <p class="help text-small text-muted">{{ form.email.help_text|safe }}</p>#}
+{#                    {% endif %}#}
+{##}
+{#                    <!--密码-->#}
+{#                    <label for="id_password1">密码:</label>#}
+{#                    {{ form.password1 }}#}
+{#                    {{ form.password1.erroprs }}#}
+{#                    {% if form.password1.help_text %}#}
+{#                        <p class="help text-small text-muted">{{ form.password2.help_text|safe }}</p>#}
+{#                    {% endif %}#}
+{##}
+{#                    <!--确认密码-->#}
+{#                    <label for="id_password2">密码确认:</label>#}
+{#                    {{ form.password2 }}#}
+{#                    {{ form.password2.errors }}#}
+{#                    {% if form.password2.help_text %}#}
+{#                        <p class="help text-small text-muted">{{ form.password2.help_text }}</p>#}
+{#                    {% endif %}#}
+{##}
+{##}
+{#                    <button type="submit" class="btn btn-primary btn-block">注册</button>#}
+{#                    <input type="hidden" name="next" value="{{ next }}">#}
+{#                </form>#}
+{#                <div class="flex-center top-gap text-small">#}
+{#                    <a href="{% url 'login' %}">已有账号登录</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+
+
+{% endblock users %}

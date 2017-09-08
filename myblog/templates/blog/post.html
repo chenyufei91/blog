@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <span class="separator">&#x2F;</span>
+    <a href="{% url 'blog:post' %}">Post</a>
+    {% if page_name %}
+    <span class="separator">&#x2F;</span>
+    <a href="#">{{ page_name }}</a>
+    {% endif %}
+{% endblock breadcrumb %}
+
+
+
+
+{% block main %}
+<div class="row">
+    {% for post in post_list %}
+    <div class="col-md-12 col-sm-12">
+        <article class="">
+         <div class="" style="border: 0;">
+            <header>
+                <h3><a style="color: #454a4e;text-align: center" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                <p class="text-muted" style="">
+                 <small>发布时间:{{ post.created_time }}</small>
+                 <small class="" style="margin-left: 20px">
+                 阅读量: <span class="badge">{{ post.views }}</span>
+                 </small>
+                </p>
+            </header>
+            <div class="body" style="margin-bottom: 10px; min-height: 135px">
+
+                <div style="height: 100%;min-height: 135px;width: 200px;float: right;margin-left: 8px">
+                    <a href="{{ post.get_absolute_url }}" style="width: 100%;height: 100%">
+                        <img src="{{ post.title_img.url }}" style="width: 100%;height: 100%;min-height: 135px  ">
+                    </a>
+                </div>
+                <p style="text-align: justify; min-height: 115px">
+                {{ post.excerpt }}
+                </p>
+            </div>
+            <p style="font-size: 12px">
+                类别：<a href="{% url 'blog:category' post.category_id %}"><span class="badge">{{ post.category.name }}</span></a>
+                &nbsp;
+                标签：
+                {% for tag in post.tag.all %}
+                    <a href="{% url 'blog:tag' tag.id %}"><span class="badge">{{ tag.name }}</span></a>
+                {% endfor %}
+            </p>
+            </div>
+   <div style="border: 1px dashed #ddd;"></div>
+        </article>
+    </div>
+    {% empty %}
+        暂时还没发布文章
+  {% endfor %}
+</div>
+
+<div class="text-center">
+    <nav aria-label="Page navigation ">
+  <ul class="pagination " style="margin-bottom: 0">
+
+  {% if is_paginated %}
+    {% if page_obj.number != 1 %}
+    <li>
+      <a href="?page=1" aria-label="首页">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}">上一页</a></li>
+    {% endif %}
+
+    {% for i in page_range %}
+
+        {% if i == page_obj.number %}
+            <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+        {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">下一页</a></li>
+    {% endif %}
+    {% if page_obj.number != paginator.num_pages  %}
+    <li>
+      <a href="?page={{ paginator.num_pages }}" aria-label="最后一页">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    {% endif %}
+  {% endif %}
+
+  </ul>
+    <div class="text-center">第&nbsp;{{ page_obj.number }}&nbsp;/&nbsp;{{ paginator.num_pages }}&nbsp;页</div>
+</nav>
+    </div>
+{% endblock main %}

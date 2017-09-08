@@ -1,0 +1,381 @@
+{% load staticfiles %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block titile %}Home{% endblock titile %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <script src="{% static 'blog/js/jquery.min.js' %}"></script>
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="{% static 'blog/css/font-awesome/css/font-awesome.min.css' %}">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" id="theme-styles">
+
+    <link rel="stylesheet" href="{% static 'blog/css/code/friendly.css' %}">
+    <!--[if lt IE 9] -->
+
+{#        <script src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>#}
+    <!--[endif]-->
+    {% block top %}{% endblock top %}
+    <style>
+        .navbar-form{ position: relative;}
+        .navbar-form button[type="submit"]
+        {
+            position: absolute;
+            top:10%;
+            right: 20px;
+            background:none;
+            border:none;
+        }
+
+
+        @media (max-width: 767px)
+        {
+            .navbar-form button[type="submit"]
+            {  top:28%;  }
+        }
+
+
+    </style>
+
+{#    <script>#}
+{#        #}
+{#        $(function () {#}
+{#            #}
+{#        })#}
+{#        #}
+{#        #}
+{#        #}
+{#    </script>#}
+
+</head>
+<body>
+    <header>
+
+{#{% if user.is_authenticated %}#}
+{##}
+{#            <img src="{{ user.avatar.url }}" alt="A Smart Guy" class="user-avatar">#}
+{#  <p>欢迎你：<a href="{% url 'users:user_detail' %}">{{ user.username }}</a></p>#}
+{#  <button class="btn btn-default"><a href="{% url 'logout' %}?next={{ request.path }}">注销登录</a></button>#}
+{#  <button class="btn btn-default"><a href="{% url 'password_change' %}?next={{ request.path }}">修改密码</a></button>#}
+{#{% else %}#}
+{#  <p>你还没有登录，请#}
+{#    <button class="btn btn-default"><a href="{% url 'login' %}?next={{ request.path }}">登录</a></button>#}
+{#    或者#}
+{#    <button class="btn btn-default"><a href="{% url 'users:register' %}?next={{ request.path }}">注册</a></button>#}
+{#  </p>#}
+{#{% endif %}#}
+
+
+                <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="padding-right: 10px">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                             data-target="#example-navbar-collapse">
+                            <span class="sr-only">切换导航</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                         </button>
+                        <a class="navbar-brand" href="/" style="">fly</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="">
+                                <a href="/">
+                                    <span class="glyphicon glyphicon-home"></span> 首页
+                                </a>
+                            </li>
+                            <li  class="">
+                                <a href="{% url 'blog:post' %}">
+                                    <span class="glyphicon glyphicon-pencil"></span> 文章
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-fire"></span> 待定ing
+                                </a>
+                            </li>
+                            <li class="" >
+                                <a href="{% url 'rss' %}" >
+                                    <span class="fa fa-rss-square" style="font-size: 18px"></span> RSS订阅
+                                </a>
+                            </li>
+                        </ul>
+
+                        <form action="{% url 'haystack_search' %}" accept-charset="utf-8" class="navbar-form navbar-right ">
+
+                            <input  name="q" type="search" id="searchbox"  placeholder="输入搜索内容..." class="form-control" >
+
+                            <button type="submit" >
+                                <span class="glyphicon glyphicon-search"  >
+                                </span>
+                            </button>
+
+                        </form>
+
+
+                        {% if user.is_authenticated %}
+
+                            <ul id="user_part" class="nav navbar-nav navbar-right " >
+                                <li role="presentation" class="dropdown" >
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 5px 15px; " >
+                                        <img class="navbar-header navbar-avatar" src="{{ user.avatar.url }}" style="width: 40px;height: 40px; border-radius: 40px; float: inherit" />
+                                        &nbsp;
+                                            {{ user.nickname }}
+
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu" style="min-width: 200px;max-width: 160px; border-top: none;text-align: center " >
+
+
+                                        <li><a href="{% url 'users:user_detail' %}">
+                                            用户中心
+
+                                        </a></li>
+                                        <li><a href="{% url 'password_change' %}?next={{ request.path }}">修改密码</a></li>
+                                        <li><a href="{% url 'logout' %}?next={{ request.path }}">注销退出</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        {% else %}
+                            <ul id="user_part" class="nav navbar-nav navbar-right">
+                                <li><a href="{% url 'login' %}?next={{ request.path }}">登录</a>
+                                <li class="li_hide" style="padding: 10px 0; ">/</li>
+                                <li><a href="{% url 'users:register' %}?next={{ request.path }}">注册</a></li>
+                            </ul>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+
+
+
+
+{#        <div class="widewrapper masthead">#}
+{#<div class="jumbotron" style="background-color: white">#}
+
+{#  <h1>Hello, world!</h1>#}
+{#  <p>...</p>#}
+{#  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>#}
+{#</div>#}
+
+{#   <div class='bg bgdiv' >#}
+<img style="width: 100%;height: auto;margin-top: 50px;opacity: 0.85" src="{% static 'blog/img/bg/3.png' %}">
+{#<div class="images"><img src="http://images2015.cnblogs.com/blog/561794/201603/561794-20160310002800647-50077395.jpg" width="100%"/></div>#}
+{#            <div class='container' style="margin-top: 30px">#}
+{#                  <a href="/" id="logo" style="float: left">#}
+{#   &nbsp;&nbsp;#}
+{#   <img src="{% static 'blog/img/logo/5.png' %}"  alt="clean Blog">#}
+{#            </div>#}
+{#   </div>#}
+
+{#            <div class="container">#}
+
+
+{#                <div id="mobile-nav-toggle" class="pull-right">#}
+{#                    <a href="#" data-toggle="collapse" data-target=".clean-nav .navbar-collapse">#}
+{#                        <i class="fa fa-bars"></i>#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+        <div class="widewrapper subheader">
+            <div class="container">
+                <div class="clean-breadcrumb">
+                    <a href="/">Blog</a>
+                    {% block breadcrumb %}
+                    {% endblock breadcrumb %}
+                </div>
+
+{#                <div class="clean-searchbox">#}
+{#                    <form action="{% url 'haystack_search' %}" method="get"  accept-charset="utf-8">#}
+{#                        <input class="searchfield" name="q" id="searchbox" type="search" placeholder="Search">#}
+{#                        <button class="searchbutton" type="submit">#}
+{#                            <i class="fa fa-search"></i>#}
+{#                        </button>#}
+{#                    </form>#}
+{#                </div>#}
+            </div>
+        </div>
+    </header>
+{% block users %}
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+                {% block main %}
+                    <div class="row">
+                        {% for post in post_list %}
+                        <div class="col-md-6 col-sm-6">
+                            <article class="blog-teaser">
+                                <header>
+                                    <img src="{{ post.title_url }}" alt="">
+                                    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                                    <span class="meta">{{ post.created_time }}, {{ post.users }}</span>
+                                    <hr>
+                                </header>
+                                <div class="body">
+                                    {{ post.excerpt }}
+                                </div>
+                                <div class="clearfix">
+                                    <a href="{{ post.get_absolute_url }}" class="btn btn-clean-one">Read more</a>
+                                </div>
+                            </article>
+                        </div>
+                        {% empty %}
+                            暂时还没发布文章
+                      {% endfor %}
+                    </div>
+
+
+                {% endblock main %}
+                </div>
+
+
+                <aside class="col-md-4 blog-aside">
+                    
+                    <div class="aside-widget">
+                        <header>
+                            <h3>最新文章</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list">
+                                {% get_recent_posts as recent_list %}
+                                {% for post in recent_list %}
+                                    <li><a href="{{ post.get_absolute_url}}">{{ post.title }}</a></li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                
+                    <div class="aside-widget">
+                        <header>
+                            <h3>分类目录</h3>
+                        </header>
+                        <div class="body">
+                        {% get_categories as categories %}
+                            <ul class="clean-list">
+                                {% for category in categories%}
+                                <li><a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
+                                    <span>({{ category.num_posts }})</span>
+                                </li>
+                                {% empty %}
+                                暂无分类 !
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                      <div class="aside-widget">
+                        <header>
+                            <h3>归档</h3>
+                        </header>
+                        <div class="body">
+                        {% all_post as archives %}
+                        {% regroup archives by created_time.year as year_posts %}
+                            <ul class="clean-list">
+                                {% for year in year_posts %}
+
+                                    {% regroup year.list by created_time.month as month_posts %}
+                                    {% for month in month_posts %}
+
+                                <li>
+                                    <a href="{% url 'blog:archives' year.grouper month.grouper %}">{{ year.grouper }}年{{ month.grouper}}月</a>
+                                    <span>({{ month.list|length }})</span>
+                                </li>
+                                     {% endfor %}
+                                {% empty %}
+                                暂无归档 !
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>Tags</h3>
+                        </header>
+                        <div class="body clearfix">
+                            <ul class="tags">
+                                {% get_tags as tag_list %}
+
+                                {% for tag in tag_list %}
+                                    <li><a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}({{ tag.num_posts }})</a></li>
+                                    {% empty %}
+                                    暂无标签！
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    {% block aside %}{% endblock aside %}
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock users %}
+    <footer>
+        <div class="widewrapper footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-user"></i>随机推荐</h3>
+                        <ul class="clean-list">
+                            {% random_post as random_list%}
+                            {% for post in random_list %}
+
+                            <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-pencil"></i>最新文章</h3>
+                        <ul class="clean-list">
+                            {% get_recent_posts as rencent_list%}
+                            {% for post in rencent_list %}
+                            <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-envelope"></i>Contact Me</h3>
+
+                        <p>如果你有什么好的想法或意见可以邮箱联系我</p>
+                        <p>邮箱地址：chenyufei91@hotmail.com</p>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="widewrapper copyright">
+              Welcome to  my website !  &nbsp; Copyright <span style="font-size: 15px;" class="fa fa-copyright"></span> &nbsp;<a href="/" target="_blank" >fly</a>
+        </div>
+    </footer>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/modernizr.js' %}"></script>
+
+</body>
+</html>

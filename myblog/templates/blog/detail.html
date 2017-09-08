@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% load threadedcomments_tags %}
+{% block titile %}{{ post.title }}{% endblock titile %}
+
+{% block top %}
+<script src="{% static 'mycomments/js/test.js' %}"></script>
+{% endblock top %}
+{% block breadcrumb %}
+    <span class="separator">&#x2F;</span>
+    <a href="#">Post</a>
+    <span class="separator">&#x2F;</span>
+    <a href="{% url 'blog:category'  post.category_id %}">{{ post.category}}</a>
+    <span class="separator">&#x2F;</span>
+    <a href="#">{{ post.title }}</a>
+{% endblock breadcrumb %}
+
+
+
+{% block main %}
+
+
+<article class="blog-post">
+    <header>
+       
+        <div class="lead-image">
+            <img src="{{ post.title_img.url }}" alt="" class="img-responsive">
+            
+        </div>
+    </header>
+    <div class="body">
+        <h1>{{ post.title }}</h1>
+        <div class="meta">
+            <i class="fa fa-calendar"></i>{{ post.created_time }}
+
+            <i class="fa fa-eye"> </i>{{ post.views }}&nbsp;
+            <i class="fa fa-comments"></i>
+            <span ><a href="#comments">{{ comment_list|length }}</a></span>&nbsp;
+            <i class="fa fa-tags" style="font-size: 15px"></i>
+            <span >
+                {% for tag in post.tag.all %}
+                <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                {% endfor %}
+            </span>
+
+        </div>
+
+        {{ post.body |safe }}
+    </div>
+</article>
+
+<aside class="social-icons clearfix">
+    <h3>Share on </h3> 
+    <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-google"></i></a>
+</aside>
+
+    {% render_comment_list for post %}
+
+
+
+<aside class="comments" id="comments">
+<hr>
+
+
+    <h2><i id="add_comment" class="fa fa-pencil"></i> 添 加 评 论  </h2>
+    {% if user.is_authenticated %}
+    {% render_comment_form for post %}
+
+    {% else %}
+
+    <div style="text-align: center">
+        需要<a href="{% url 'login' %}?next={{ request.path | slice:':-1'}}#add_comment" style="color: #337ab7">登录</a>之后才能评论哦 (*^__^*)
+    </div>
+    {% endif %}
+</aside>
+
+
+
+
+{% endblock main %}

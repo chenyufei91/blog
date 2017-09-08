@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block titile %}用户中心{% endblock titile %}
+{% block top %}
+    <link rel="stylesheet" href="{% static 'blog/css/user/user_style.css' %}">
+
+{% endblock top %}
+{% block breadcrumb %}
+    <span class="separator">&#x2F;</span>
+    <a href="{% url 'users:user_detail' %}">用户中心</a>
+{% endblock breadcrumb %}
+{% block users %}
+{#    <div class="local-header"><h4>个人资料</h4></div>#}
+{#    <form class="profile" method="post" enctype="multipart/form-data"#}
+{#        action="{% url 'users:user_detail' %}">#}
+{#        {% csrf_token %}#}
+{#        {% crispy form %}#}
+{##}
+{#        <!--用户头像-->#}
+{#        <div class="avatar">#}
+{#            <img class="img-rounded" src="{{ request.user.avatar.url }}">#}
+{#        </div>#}
+{#        <button class="primaryAction" type="submit">更新资料</button>#}
+{#    </form>#}
+
+ <div class="widewrapper main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 clean-superblock" id="contact">
+                <h3>注册</h3>
+                <form class="form" action="{% url 'users:register' %}" method="post">
+
+                    {% csrf_token %}
+                    {{ form.avatar.label_tag }}
+                    <img src="{{ request.user.avatar.url }}" class="user_avatar">
+                    <input style="border: none" id="id_avatar" name="avatar" type="file" value="上传头像">
+                    {{ form.errors }}
+
+                    <!-- 昵称 -->
+                    {{ form.nickname.label_tag }}
+                    {{ form.nickname }}
+                    {{ form.errors }}
+
+
+                    <!-- 用户邮箱 -->
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {{ form.errors }}
+                    <div class="login_bottom">
+                        <button type="submit" class="btn btn-primary btn-block">确认修改</button>
+                    </div>
+                    <input type="hidden" name="next" value="{{ next }}">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{#<div class="flex-center">#}
+{#    <div class="container">#}
+{#        <div class="flex-center">#}
+{#            <div class="unit-1-2 unit-1-on-mobile">#}
+{#                <h3>用户中心</h3>#}
+{#                <form class="form" action="{% url 'users:user_detail' %}" method="post" enctype="multipart/form-data">#}
+{##}
+{#                    {% csrf_token %}#}
+{#                    {{ form.avatar.label_tag }}#}
+{#                    <img src="{{ request.user.avatar.url }}">#}
+{#                    <input id="id_avatar" name="avatar" type="file" value="上传头像">#}
+{#                    {{ form.errors }}#}
+{##}
+{#                    <!-- 昵称 -->#}
+{#                    {{ form.nickname.label_tag }}#}
+{#                    {{ form.nickname }}#}
+{#                    {{ form.errors }}#}
+{##}
+{##}
+{#                    <!-- 用户邮箱 -->#}
+{#                    {{ form.email.label_tag }}#}
+{#                    {{ form.email }}#}
+{#                    {{ form.errors }}#}
+{#                     <button type="submit" class="btn btn-primary btn-block">确认修改</button>#}
+{#                    <input type="hidden" name="next" value="{{ next }}">#}
+{#                </form> #}
+{##}
+{#                    {% for field in form %}#}
+{#                        {{ field.label_tag }}#}
+{#                        {{ field }}#}
+{#                        {{ field.errors }}#}
+{#                        {% if field.help_text %}#}
+{#                            <p class="help text-small text-muted">{{ field.help_text|safe }}</p>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                     <button type="submit" class="btn btn-primary btn-block">确认修改</button>#}
+{#                    <input type="hidden" name="next" value="{{ next }}">#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+
+{% endblock users %}
