@@ -7,9 +7,9 @@ from imagekit.processors import ResizeToFit
 
 class User(AbstractUser):
     # 用户昵称(唯一）
-    nickname = models.CharField(max_length=50, unique=True, verbose_name='昵称')
+    nickname = models.CharField(max_length=50, verbose_name='昵称')
     avatar = ProcessedImageField(upload_to='avatar',
-                                 default='avatar/default.png',
+                                 default='avatar/default.jpg',
                                  processors=[ResizeToFit(80, 80)], verbose_name='用户头像')
 
     def __str__(self):
