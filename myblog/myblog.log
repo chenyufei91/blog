@@ -1,0 +1,84 @@
+*** Starting uWSGI 2.0.15 (64bit) on [Fri Sep  8 22:04:18 2017] ***
+compiled with version: 5.4.0 20160609 on 08 September 2017 19:56:13
+os: Linux-4.4.0-85-generic #108-Ubuntu SMP Mon Jul 3 17:23:59 UTC 2017
+nodename: fly
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /etc/uwsgi/sites
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/cyf/sites/chenyufei91.com/blog/myblog
+chdir(): No such file or directory [core/uwsgi.c line 2591]
+*** Starting uWSGI 2.0.15 (64bit) on [Fri Sep  8 22:31:26 2017] ***
+compiled with version: 5.4.0 20160609 on 08 September 2017 19:56:13
+os: Linux-4.4.0-85-generic #108-Ubuntu SMP Mon Jul 3 17:23:59 UTC 2017
+nodename: fly
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /etc/uwsgi/sites
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/cyf/sites/chenyufei91.com/blog/myblog
+chdir(): No such file or directory [core/uwsgi.c line 2591]
+*** Starting uWSGI 2.0.15 (64bit) on [Fri Sep  8 22:31:37 2017] ***
+compiled with version: 5.4.0 20160609 on 08 September 2017 19:56:13
+os: Linux-4.4.0-85-generic #108-Ubuntu SMP Mon Jul 3 17:23:59 UTC 2017
+nodename: fly
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /etc/uwsgi/sites
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/cyf/sites/chenyufei91.com/blog/myblog
+chdir(): No such file or directory [core/uwsgi.c line 2591]
+*** Starting uWSGI 2.0.15 (64bit) on [Fri Sep  8 22:35:25 2017] ***
+compiled with version: 5.4.0 20160609 on 08 September 2017 19:56:13
+os: Linux-4.4.0-85-generic #108-Ubuntu SMP Mon Jul 3 17:23:59 UTC 2017
+nodename: fly
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /etc/uwsgi/sites
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/cyf/sites/chenyufei91.com/blog/myblog
+chdir(): No such file or directory [core/uwsgi.c line 2591]
+*** Starting uWSGI 2.0.15 (64bit) on [Fri Sep  8 23:06:47 2017] ***
+compiled with version: 5.4.0 20160609 on 08 September 2017 19:56:13
+os: Linux-4.4.0-85-generic #108-Ubuntu SMP Mon Jul 3 17:23:59 UTC 2017
+nodename: fly
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /etc/uwsgi/sites
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/cyf/sites/chenyufei91.com/blog/myblog
+chdir(): No such file or directory [core/uwsgi.c line 2591]
+*** Starting uWSGI 2.0.15 (64bit) on [Fri Sep  8 23:23:24 2017] ***
+compiled with version: 5.4.0 20160609 on 08 September 2017 19:56:13
+os: Linux-4.4.0-85-generic #108-Ubuntu SMP Mon Jul 3 17:23:59 UTC 2017
+nodename: fly
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /etc/uwsgi/sites
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/cyf/sites/chenyufei91.com/blog/myblog
+chdir(): No such file or directory [core/uwsgi.c line 2591]
+*** Starting uWSGI 2.0.15 (64bit) on [Sat Sep  9 00:12:13 2017] ***
+compiled with version: 5.4.0 20160609 on 09 September 2017 00:10:12
+os: Linux-4.4.0-85-generic #108-Ubuntu SMP Mon Jul 3 17:23:59 UTC 2017
+nodename: fly
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /etc/nginx/sites-enabled
+detected binary path: /usr/local/bin/uwsgi
+chdir() to /home/cyf/sites/chenyufei91.com/blog/myblog
+chdir(): No such file or directory [core/uwsgi.c line 2591]

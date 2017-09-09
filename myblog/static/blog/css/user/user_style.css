@@ -1,0 +1,49 @@
+        .errorlist {
+            color: red;
+        }
+
+    .form label{
+        border:1px solid transparent;
+        display:block;
+        line-height:1.25;
+        margin-top:10px;
+        padding-bottom:.3125rem;
+        padding-top:.3125rem;
+
+    }
+
+    .form>input{
+        display:block;
+        width:100%;
+        height:34px;
+        font-size:14px;
+        vertical-align:middle;
+        background-color:#fff;
+        border:1px solid #ccc;
+        border-radius:4px;
+
+        padding:5px;
+        margin-top: 10px
+
+    }
+
+    .login_bottom{
+
+        margin-top:20px;
+        font-size: 85%;
+    }
+
+    .login_bottom a{
+        color: #267fd9;
+    }
+
+    .login_bottom a:hover{
+        text-decoration:underline;
+    }
+
+    .user_avatar{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+
+    }
