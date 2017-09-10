@@ -175,3 +175,12 @@ class TagView(ListView):
         page_name = tag.name
         context.update({'page_name': page_name})
         return context
+
+
+# ==========================404 500 403=====================
+def page_not_found(request):
+    return render(request, '404.html')
+
+
+def page_error(request):
+    return render(request, '500.html')

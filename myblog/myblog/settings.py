@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'iy=2h%56vm+-0^s*ad(a3_s==5e1ng#r+8hh_bhj5fei96memt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+# DEBUG = True
 DEBUG = False
 
 # ALLOWED_HOSTS = []
@@ -146,6 +146,7 @@ DATABASES = {
         'NAME': 'myblog',
         'USER': 'root',
         'PASSWORD': 'chenyufei',
+        # 'PASSWORD': 'mysql',
         'HOST': 'localhost',
         'PORT': 3306,
     }

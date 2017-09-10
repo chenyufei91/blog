@@ -1159,6 +1159,12 @@ text-align: center;
 margin: 70px 20px 35px;
 }
 
+.clean-superblock h3 {
+  font-size: 30px;
+text-align: center;
+margin: 20px;
+}
+
 /* The image credits page */
 @media (max-width: 767px) {
   .credits {
