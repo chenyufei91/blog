@@ -28,6 +28,6 @@ urlpatterns = [
     url(r'^users/', include('django.contrib.auth.urls')),
     url(r'^markdownx/', include('markdownx.urls')),
 
-# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
- ]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+ # ]
 
