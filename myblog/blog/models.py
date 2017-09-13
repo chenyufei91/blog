@@ -61,7 +61,9 @@ class Post(models.Model):
             'markdown.extensions.codehilite',
 
         ])
+
         self.excerpt = strip_tags(md.convert(self.body))[:150]+'...'
+        '''
         # print(self.title_img.name+'11111=============')
         # 上传图片时判断，上传时name为'文件名' split后长度为1
         # 此时加上title拼接成'title/文件名'
@@ -72,4 +74,6 @@ class Post(models.Model):
             # 将上传的文章标题图片保存到其id的文件夹下
             self.title_img.name = str(self.pk)+'/'+self.title_img.name
         # print(self.title_img.name)
+        '''
+
         super(Post, self).save()

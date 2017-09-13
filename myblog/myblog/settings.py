@@ -197,6 +197,12 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-
+# qi niu
+QINIU_ACCESS_KEY = 'MaO6EC3wHhCnbCfMw1xdAchJKlqp0_LszmOEIsdV'
+QINIU_SECRET_KEY = 'mkD8q6C9zPW9XIurh08Fnh0r_ZOPJc6tvgVpS1Af'
+QINIU_BUCKET_NAME = 'fly-blog'
+QINIU_BUCKET_DOMAIN = 'pic.chenyufei91.com'
+QINIU_SECURE_URL = False
+DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

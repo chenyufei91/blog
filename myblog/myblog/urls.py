@@ -19,7 +19,7 @@ from blog.feeds import AllPostRessFeed
 from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^15910/fly-admin/', admin.site.urls),
     url(r'', include('blog.urls')),
     url(r'^all/rss/$', AllPostRessFeed(), name='rss'),
     url(r'^search/', include('haystack.urls')),
