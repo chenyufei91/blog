@@ -192,5 +192,5 @@ class Highlighter(object):
             # 如需展示(当start_head为True时)便加上
         if self.start_head:
 
-            highlighted_chunk += self.text_block[:start_offset]
+            highlighted_chunk = self.text_block[:start_offset] + highlighted_chunk
         return highlighted_chunk
