@@ -11,7 +11,8 @@
                 <h3><a href="{{ post.0.get_absolute_url }}">{{ post.0.title }}</a> </h3>
                 <span class="meta">{{ post.0.created_time }} &nbsp;  浏览:{{ post.0.views }}  </span>
                 <p style="color: #5b6268;">
-                    分类:<a href="{% url 'blog:category' post.0.category_id %}">{{ post.0.category }}</a> &nbsp;
+                    分类:
+                        <a href="{% url 'blog:category' post.0.category_id %}">{{ post.0.category }}</a> &nbsp;
                     标签:{% for tag in post.0.tag.all %}
                         <a href="{% url 'blog:tag' tag.id %}">{{ tag.name }}</a>
                         {% endfor %}
