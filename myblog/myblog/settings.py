@@ -56,13 +56,12 @@ INSTALLED_APPS = [
 MARKDOWNX_EDITOR_RESIZABLE = True
 # markdown扩展
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
-   'markdown.extensions.fenced_code',
+    'markdown.extensions.fenced_code',
     'markdown.extensions.codehilite',
     'markdown.extensions.smarty',
 ]
 # markdown图片上传路径
 MARKDOWNX_MEDIA_PATH = 'markdownx/img/'
-
 
 
 # 设置自定义的评论应用
@@ -82,9 +81,8 @@ LOGIN_REDIRECT_URL = '/'
 
 # 没有登录进入需要用户认证的页面自动跳转登录页面进行登录
 LOGIN_URL = '/users/login/'
-#用户登录认证
 
-
+# 用户登录认证
 AUTHENTICATION_BACKENDS = (
 
     'django.contrib.auth.backends.ModelBackend',
@@ -133,10 +131,6 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 
-
-
-
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -145,8 +139,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'myblog',
         'USER': 'root',
-        'PASSWORD': 'chenyufei',
-        # 'PASSWORD': 'mysql',
+        # 'PASSWORD': 'chenyufei',
+        'PASSWORD': 'mysql',
         'HOST': '127.0.0.1',
         'PORT': 3306,
     }

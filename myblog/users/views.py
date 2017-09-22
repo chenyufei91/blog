@@ -4,12 +4,17 @@ from django.views.decorators.http import require_GET, require_POST, require_http
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+
 @require_http_methods(['GET', 'POST'])
 def register(request):
     # 获取传递来的next
     # 若为get请求，获取传入来的next 若直接访问，无next，注册成功之后跳转到首页
     # 当注册成功发出post请求时，获取之前get的next
     redirect_to = request.POST.get('next', request.GET.get('next', ))
+
+    # 若用户已登录 跳转到首页
+    if request.user.is_authenticated:
+        return redirect('/')
 
     # 请求为POST 表面用户提交了注册信息
     if request.method == 'POST':
